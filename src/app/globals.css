@@ -40,3 +40,50 @@ a {
     color-scheme: dark;
   }
 }
+
+
+.product-thumbnail{
+  position: relative;
+  overflow: hidden;
+  background: #f4f4f5;
+  border-radius: 12px;
+}
+.product-link{
+  display: grid;
+}
+.product-img{
+  image-rendering: -webkit-optimize-contrast;
+  object-fit: contain;
+  mix-blend-mode: multiply;
+
+  
+}
+
+.product-content-wrapper{
+  padding: 1rem 2.375rem 1.75rem;
+  display: flex;
+  flex-direction: column;
+}
+
+.product-title{
+  font-size: 1.125rem;
+}
+
+.container{
+  max-width: 1320px;
+  margin: 0 auto;
+}
+
+.row{
+  display: grid;
+  gap:24px;
+  grid-template-columns: repeat(2, 1fr);
+
+}
+
+.product-link-wrapper{
+  margin: 0 auto;
+  width: 288px;
+  height: 288px;
+  position: relative;
+}

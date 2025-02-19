@@ -2,8 +2,9 @@ import { fetchProducts, setPage } from "@/lib/productsSlice";
 import { getProducts } from "@/utils/wooUtils";
 import Image from "next/image";
 import { useDispatch, useSelector } from "react-redux";
+import ProductItem from "./Products";
 
-const ProductsList = async() => {
+const ProductsList = async () => {
   // const dispatch = useDispatch();
   // const { items, currentPage, perPage, totalPages, loading, error } =
   //   useSelector((state) => state.products);
@@ -17,30 +18,24 @@ const ProductsList = async() => {
   //     dispatch(fetchProducts()); // Dispatch your function inside Redux
   //   }
   // }, [dispatch]);
-  const  {products ,totalItems,totalPages} = await getProducts()
+  const { products, totalItems, totalPages } = await getProducts();
 
   return (
-    <>
-      {products?.length > 0 &&
-        products?.map((item) => (
-          <li key={item?.id} className="testclass">
-            {item.name}
-            {item?.images?.[0]?.src}
+    <div className="container">
+    <div className="row">
+    {products?.length > 0 &&
+        products?.map(
+          (item) => item && <ProductItem key={item.id} {...item} />
+        )}
+    </div>
+     
 
-            <Image src={item?.images?.[0]?.src} alt="" height={300} width={300} />
-   
-          </li>
-        ))}
-
-      <br />
-      <br />
-      <br />
-      <br />
+     
       {totalPages}
       <br />
 
       <button>click page</button>
-    </>
+    </div>
   );
 };
 
