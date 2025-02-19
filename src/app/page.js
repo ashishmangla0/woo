@@ -6,7 +6,7 @@ const  Home = async() => {
     <div className={styles.page}>
       <main className={styles.main}>
        
-<ProductsList/>
+
       </main>
    
     </div>
