@@ -1,47 +1,45 @@
-"use client";
-
 import { fetchProducts, setPage } from "@/lib/productsSlice";
-import { useEffect } from "react";
+import { getProducts } from "@/utils/wooUtils";
+import Image from "next/image";
 import { useDispatch, useSelector } from "react-redux";
 
-const ProductsList = () => {
-    const dispatch = useDispatch();
-  const { items, currentPage, perPage, totalPages, loading, error } =
-    useSelector((state) => state.products);
+const ProductsList = async() => {
+  // const dispatch = useDispatch();
+  // const { items, currentPage, perPage, totalPages, loading, error } =
+  //   useSelector((state) => state.products);
 
+  // const handleClick = () => {
+  //   dispatch(setPage(currentPage + 1));
+  // };
 
-
-    const handleClick = () =>{
-        dispatch(setPage(currentPage + 1))
-    }
-
-    useEffect(() => {
-        if (items.length === 0) {
-          dispatch(fetchProducts()); // Dispatch your function inside Redux
-        }
-      }, [dispatch, items.length]);
-
-
-      console.log(items.products);
+  // useEffect(() => {
+  //   if (items.length === 0) {
+  //     dispatch(fetchProducts()); // Dispatch your function inside Redux
+  //   }
+  // }, [dispatch]);
+  const  {products ,totalItems,totalPages} = await getProducts()
 
   return (
     <>
-      list
-      {items}
+      {products?.length > 0 &&
+        products?.map((item) => (
+          <li key={item?.id} className="testclass">
+            {item.name}
+            {item?.images?.[0]?.src}
+
+            <Image src={item?.images?.[0]?.src} alt="" height={300} width={300} />
+   
+          </li>
+        ))}
+
       <br />
-      {loading.toString()}
       <br />
-      {perPage}
       <br />
-      {currentPage}
       <br />
       {totalPages}
       <br />
-      {error}
 
-      <button onClick={handleClick}>
-        click page
-      </button>
+      <button>click page</button>
     </>
   );
 };

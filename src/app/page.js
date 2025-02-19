@@ -1,7 +1,7 @@
 import ProductsList from "@/components/ProductsList";
 import styles from "./page.module.css";
+const  Home = async() => {
 
-export default function Home() {
   return (
     <div className={styles.page}>
       <main className={styles.main}>
@@ -12,3 +12,5 @@ export default function Home() {
     </div>
   );
 }
+
+export default Home
