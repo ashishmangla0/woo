@@ -1,4 +1,4 @@
-import Image from "next/image";
+import ProductsList from "@/components/ProductsList";
 import styles from "./page.module.css";
 
 export default function Home() {
@@ -6,12 +6,7 @@ export default function Home() {
     <div className={styles.page}>
       <main className={styles.main}>
        
-
-        <div className={styles.ctas}>
-           
-         
-          
-        </div>
+<ProductsList/>
       </main>
    
     </div>

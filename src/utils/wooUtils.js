@@ -8,17 +8,22 @@ const WooCommerce = new WooCommerceRestApi({
 });
 
 // Fetch products with pagination
-export const fetchProducts = async (page, perPage) => {
-  console.log(page);
-  console.log(perPage);
+export const getProducts = async (page, perPage) => {
 
   try {
     const response = await WooCommerce.get("products", {
       page,
       per_page: perPage,
     });
+    const products = response.data;
+    const totalItems = response.headers['x-wp-total'];
+    const totalPages = response.headers['x-wp-totalpages'];
 
-    return response;
+    return {
+        products,
+        totalItems: parseInt(totalItems, 10),
+        totalPages: parseInt(totalPages, 10),
+      };
   } catch (error) {
     throw error;
   }
