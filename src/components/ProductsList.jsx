@@ -22,19 +22,12 @@ const ProductsList = async () => {
 
   return (
     <div className="container">
-    <div className="row">
-    {products?.length > 0 &&
-        products?.map(
-          (item) => item && <ProductItem key={item.id} {...item} />
-        )}
-    </div>
-     
-
-     
-      {totalPages}
-      <br />
-
-      <button>click page</button>
+      <div className="row">
+        {products?.length > 0 &&
+          products?.map(
+            (item) => <ProductItem key={item.id} {...item} />
+          )}
+      </div>
     </div>
   );
 };
