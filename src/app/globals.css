@@ -142,3 +142,8 @@ body {
 .product-brand span{
   text-transform: capitalize;
 }
+
+
+.product-link a{
+  display: flex;
+}

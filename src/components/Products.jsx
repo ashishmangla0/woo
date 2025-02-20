@@ -1,11 +1,12 @@
 "use client";
-
+import { addToCart } from "../lib/cartSlice";
 import Image from "next/image";
 import Link from "next/link";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 
 const ProductItem = (props) => {
   const dispatch = useDispatch();
+  const cart = useSelector((state) => state.cart);
   const { id, sku, name, images, price, categories } = props;
   const handleAddToCart = (item) => {
     const { id, sku, name, price } = item;
@@ -13,13 +14,18 @@ const ProductItem = (props) => {
     console.log(id);
     console.log(sku);
     console.log(price);
+
+    dispatch(addToCart({ id: id, name:name, price: price }));
+console.log(cart);
+
+    
   };
 
   return (
     <div className="product-thumbnail" key={id || sku} >
-      <Link href={"/"} className="product-link">
+      <div  className="product-link">
         <div className="product-link-wrapper">
-          <div className="product-img">
+          <Link className="product-img" href={"/"}>
             <Image
               src={
                 images?.[0]?.src ||
@@ -28,7 +34,7 @@ const ProductItem = (props) => {
               fill
               alt={name}
             />
-          </div>
+          </Link>
 
           <div className="product-action">
             <button
@@ -49,7 +55,7 @@ const ProductItem = (props) => {
           <h2 className="product-title">{name}</h2>
           <div>{price}</div>
         </div>
-      </Link>
+      </div>
     </div>
   );
 };
